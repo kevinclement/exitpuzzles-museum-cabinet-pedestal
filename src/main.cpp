@@ -15,7 +15,7 @@ void status(int) {
 }
 
 void solve(int) {
-  logic.serial.print("forcing a puzzle solve...%s", CRLF);
+  logic.serial.print("forcing a solve...%s", CRLF);
   logic.solved();
 }
 
