@@ -8,7 +8,7 @@ Logic::Logic()
   : serial(),
     rfid(*this),
     lights(*this),
-    lightsensors(*this),
+    magnet(*this),
     sound(*this)
 {
 }
@@ -18,13 +18,13 @@ void Logic::setup() {
 
   rfid.setup();
   lights.setup();
-  lightsensors.setup();
+  magnet.setup();
   sound.setup();
 }
 
 void Logic::handle() {
   serial.handle();
-  lightsensors.handle();
+  magnet.handle();
   lights.handle();
   rfid.handle();
 }

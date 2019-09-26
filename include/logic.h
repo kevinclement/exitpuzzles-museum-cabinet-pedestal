@@ -3,7 +3,7 @@
 #include "SerialManager.h"
 #include "rfid.h"
 #include "lights.h"
-#include "lightsensors.h"
+#include "magnet.h"
 #include "sound.h"
 
 class Logic {
@@ -12,7 +12,7 @@ public:
   SerialManager serial;
   Rfid rfid;
   Lights lights;
-  LightSensors lightsensors;
+  Magnet magnet;
   Sound sound;
 
   void setup();

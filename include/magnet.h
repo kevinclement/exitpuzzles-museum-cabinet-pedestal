@@ -4,14 +4,11 @@
 
 class Logic;
 
-class LightSensors {
+class Magnet {
   public:
-    LightSensors(Logic &logic);
+    Magnet(Logic &logic);
     void setup();
     void handle();
-
-    bool lightDetected = false;
-    bool debugReadings = false;
 
   private:
     Logic &_logic;
