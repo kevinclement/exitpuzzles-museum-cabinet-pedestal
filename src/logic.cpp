@@ -3,6 +3,7 @@
 #include "consts.h"
 
 unsigned long solved_at = 0;
+uint8_t _idol = 0;
 
 Logic::Logic() 
   : serial(),
@@ -26,8 +27,15 @@ void Logic::handle() {
   lights.handle();
   rfid.handle();
 
-  if (rfid.solved && solved_at == 0) {
-    solved();
+  if (rfid.idol != _idol) {
+    _idol = rfid.idol;
+
+    if (_idol == 1 && solved_at == 0) {
+      serial.print("cabinet idol found.\n");
+      solved();
+    }
+
+    status();
   }
 }
 
