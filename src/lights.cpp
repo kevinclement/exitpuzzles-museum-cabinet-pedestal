@@ -41,7 +41,7 @@ void Lights::handle() {
 }
 
 void Lights::on() {
-  _logic.serial.print("enabling lights\n");
+  _logic.serial.print("enabling lights...\n");
   enabled = true;
 }
 

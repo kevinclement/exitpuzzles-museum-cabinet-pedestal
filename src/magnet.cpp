@@ -18,5 +18,6 @@ void Magnet::handle() {
 }
 
 void Magnet::off() {
+  _logic.serial.print("disabling magnet...\n");
   enabled = false;
 }
