@@ -13,7 +13,7 @@ Logic::Logic()
 }
 
 void Logic::setup() {
-  serial.setup("ExitMuseumMummy");
+  serial.setup("ExitMuseumCabinet");
 
   rfid.setup();
   lights.setup();
