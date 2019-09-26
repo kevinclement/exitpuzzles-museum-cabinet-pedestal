@@ -33,6 +33,8 @@ void Logic::handle() {
   if (rfid.idol != _idol) {
     _idol = rfid.idol;
 
+    lights.on(_idol);
+
     if (_idol == KEY_IDOL && solved_at == 0) {
       serial.print("cabinet idol found.\n");
       solved();
@@ -46,7 +48,6 @@ void Logic::solved() {
   serial.print("Solved!\n");
   solved_at = millis();
   
-  lights.on(KEY_IDOL);
   magnet.off();
 
   status();
