@@ -2,6 +2,9 @@
 #include "logic.h"
 #include "consts.h"
 
+// which idol is the key
+#define KEY_IDOL 1
+
 unsigned long solved_at = 0;
 uint8_t _idol = 0;
 
@@ -30,12 +33,12 @@ void Logic::handle() {
   if (rfid.idol != _idol) {
     _idol = rfid.idol;
 
-    if (_idol == 1 && solved_at == 0) {
+    if (_idol == KEY_IDOL && solved_at == 0) {
       serial.print("cabinet idol found.\n");
       solved();
+    } else {
+      status();
     }
-
-    status();
   }
 }
 
@@ -43,7 +46,7 @@ void Logic::solved() {
   serial.print("Solved!\n");
   solved_at = millis();
   
-  lights.on();
+  lights.on(KEY_IDOL);
   magnet.off();
 
   status();
@@ -65,7 +68,7 @@ void Logic::status() {
       GIT_DATE,
       DATE_NOW,
       solved_at > 0 ? "true" : "false",
-      lights.enabled ? "true" : "false",
+      lights.idol > 0 ? "true" : "false",
       magnet.enabled ? "true" : "false",
       rfid.idol,
       CRLF);

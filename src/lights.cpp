@@ -13,6 +13,15 @@
 #define FREQ 5000
 #define RES 8
 
+uint8_t ledColors[][3] = {
+  {  10,     0,     0 }, // no-idol (very light red)
+  { 255,   100,    50 }, // white
+  {   0,     0,   255 }, // blue
+  { 255,     0,     0 }, // red
+  { 200,     0,   255 }, // purple
+  {   0,   255,     0 }, // green
+};
+
 Lights::Lights(Logic &logic)
 : _logic(logic)
 {  
@@ -29,22 +38,16 @@ void Lights::setup() {
 }
 
 void Lights::handle() {
-  if (enabled) {
-    ledcWrite(R, 0);
-    ledcWrite(G, 255);
-    ledcWrite(B, 0);
-  } else {
-    ledcWrite(R, 10);
-    ledcWrite(G, 0);
-    ledcWrite(B, 0);
-  }
+  ledcWrite(R, ledColors[idol][0]);
+  ledcWrite(G, ledColors[idol][1]);
+  ledcWrite(B, ledColors[idol][2]);
 }
 
-void Lights::on() {
+void Lights::on(int i) {
   _logic.serial.print("enabling lights...\n");
-  enabled = true;
+  idol = i;
 }
 
 void Lights::off() {
-  enabled = false;
+  idol = 0;
 }

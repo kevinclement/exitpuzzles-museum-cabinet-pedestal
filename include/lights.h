@@ -10,10 +10,10 @@ class Lights {
     void setup();
     void handle();
 
-    void on();
+    void on(int i);
     void off();
 
-    bool enabled = false;
+    int idol = 0;
 
   private:
     Logic &_logic;

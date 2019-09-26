@@ -19,6 +19,11 @@ void solve(int) {
   logic.rfid.idol = 1;
 }
 
+void two(int) {
+  logic.serial.print("faking idol 2...%s", CRLF);
+  logic.rfid.idol = 2;
+}
+
 void setup() {
   logic.setup();
   logic.serial.print("Museum Cabinet Pedestal by kevinc...\n");
@@ -27,6 +32,8 @@ void setup() {
   logic.serial.registerCommand(SerialCommand("status", 's', &status, "status", "gets the status of device"));
   logic.serial.registerCommand(SerialCommand("solve",  'v', &solve,  "solve",  "force a solve and open the cabinet"));
   logic.serial.registerCommand(SerialCommand("reboot", 'r', &reboot, "reboot", "software reboot the device"));
+  
+  logic.serial.registerCommand(SerialCommand("two", '2', &two, "two", "fake idol 2 showing up"));
 
   logic.serial.printHelp();
   logic.status();
