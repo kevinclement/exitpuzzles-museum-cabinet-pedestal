@@ -50,7 +50,8 @@ void Logic::status() {
       "buildDate:%s,"
       "solved:%s,"
       "lights:%s,"
-      "magnet:%s"
+      "magnet:%s,"
+      "idol:%d"
       "%s"
     , GIT_HASH,
       GIT_DATE,
@@ -58,6 +59,7 @@ void Logic::status() {
       solved_at > 0 ? "true" : "false",
       lights.enabled ? "true" : "false",
       magnet.enabled ? "true" : "false",
+      rfid.idol,
       CRLF);
 
   serial.print(cMsg);
