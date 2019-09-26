@@ -16,7 +16,7 @@ void status(int) {
 
 void solve(int) {
   logic.serial.print("forcing a solve...%s", CRLF);
-  logic.solved();
+  logic.rfid.solved = true;
 }
 
 void setup() {

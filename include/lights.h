@@ -13,7 +13,9 @@ class Lights {
     void on();
     void off();
 
+    bool enabled = false;
+
   private:
     Logic &_logic;
-    bool _enabled = false;
+    
 };

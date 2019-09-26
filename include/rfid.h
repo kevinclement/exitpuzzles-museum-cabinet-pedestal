@@ -10,6 +10,8 @@ class Rfid {
     void setup();
     void handle();
 
+    bool solved = false;
   private:
     Logic &_logic;
+
 };

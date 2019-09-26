@@ -14,13 +14,9 @@ void Magnet::setup() {
 }
 
 void Magnet::handle() {
-  digitalWrite(MAGNET_PIN, _enabled ? HIGH : LOW);
-}
-
-void Magnet::on() {
-  _enabled = true;
+  digitalWrite(MAGNET_PIN, enabled ? HIGH : LOW);
 }
 
 void Magnet::off() {
-  _enabled = false;
+  enabled = false;
 }

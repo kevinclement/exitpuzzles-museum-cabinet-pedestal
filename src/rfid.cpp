@@ -13,9 +13,6 @@ MFRC522::MIFARE_Key key;
 byte cards[][4] = { {0xA7, 0x86, 0x8A, 0xF2} };
 byte readCard[4];    // Stores scanned ID read from RFID Module
 
-bool found = false;
-bool wasFound = false;
-
 Rfid::Rfid(Logic &logic)
 : _logic(logic)
 {
@@ -29,7 +26,6 @@ void Rfid::setup() {
 void Rfid::handle() {
   // Look for new cards
   if ( !mfrc522.PICC_IsNewCardPresent() ) {
-    found = false;
     return;
   }
 
@@ -43,8 +39,9 @@ void Rfid::handle() {
 
   // Authorized
   if(!memcmp(readCard, cards[0],4)){
-    found = true;
-    wasFound = true;
-    Serial.println("authorized");
+    _logic.serial.print("RFID authorized.\n");
+    solved = true;
   }
+
+  // TODO: need to copy over code to detect removal of idol
 }

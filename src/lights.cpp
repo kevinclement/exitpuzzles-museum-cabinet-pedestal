@@ -1,5 +1,6 @@
 #include "Arduino.h"
 #include "lights.h"
+#include "logic.h"
 
 #define RED_PIN 33
 #define GREEN_PIN 25
@@ -28,7 +29,7 @@ void Lights::setup() {
 }
 
 void Lights::handle() {
-  if (_enabled) {
+  if (enabled) {
     ledcWrite(R, 0);
     ledcWrite(G, 255);
     ledcWrite(B, 0);
@@ -40,9 +41,10 @@ void Lights::handle() {
 }
 
 void Lights::on() {
-  _enabled = true;
+  _logic.serial.print("enabling lights\n");
+  enabled = true;
 }
 
 void Lights::off() {
-  _enabled = false;
+  enabled = false;
 }

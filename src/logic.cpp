@@ -25,12 +25,19 @@ void Logic::handle() {
   magnet.handle();
   lights.handle();
   rfid.handle();
+
+  if (rfid.solved && solved_at == 0) {
+    solved();
+  }
 }
 
 void Logic::solved() {
   serial.print("Solved!\n");
-
   solved_at = millis();
+  
+  lights.on();
+  magnet.off();
+
   status();
 }
 
@@ -41,12 +48,16 @@ void Logic::status() {
       "version:%s,"
       "gitDate:%s,"
       "buildDate:%s,"
-      "solved:%s"
+      "solved:%s,"
+      "lights:%s,"
+      "magnet:%s"
       "%s"
     , GIT_HASH,
       GIT_DATE,
       DATE_NOW,
       solved_at > 0 ? "true" : "false",
+      lights.enabled ? "true" : "false",
+      magnet.enabled ? "true" : "false",
       CRLF);
 
   serial.print(cMsg);
