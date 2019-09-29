@@ -11,7 +11,6 @@
 int compareTags();
 
 MFRC522 mfrc522(SS_PIN, RST_PIN);  // Create MFRC522 instance.
-MFRC522::MIFARE_Key key;
 
 #define NUM_IDOLS 5
 byte idols[][4] = {
@@ -36,6 +35,11 @@ Rfid::Rfid(Logic &logic)
 void Rfid::setup() {
   SPI.begin();        // Init SPI bus
   mfrc522.PCD_Init(); // Init MFRC522 card
+  
+  Serial.print("Reader Pin: ");
+  Serial.print(SS_PIN);
+  Serial.print(" => ");
+  mfrc522.PCD_DumpVersionToSerial();
 }
 
 void Rfid::handle() {
