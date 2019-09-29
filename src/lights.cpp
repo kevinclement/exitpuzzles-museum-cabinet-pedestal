@@ -45,7 +45,7 @@ void Lights::handle() {
 
 void Lights::on(int i) {
   if (i==0) {
-    _logic.serial.print("enabling lights for no idol");
+    _logic.serial.print("enabling lights for no idol\n");
   }
   else {
     _logic.serial.print("enabling lights for idol %d...\n", i);
