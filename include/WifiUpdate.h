@@ -12,6 +12,5 @@ class WifiUpdate {
 
   private:
     Logic &_logic;
-    void connected();
 };
 
