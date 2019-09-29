@@ -3,7 +3,7 @@
 #include "consts.h"
 
 // which idol is the key
-#define KEY_IDOL 1
+#define KEY_IDOL 5
 
 unsigned long solved_at = 0;
 uint8_t _idol = 0;

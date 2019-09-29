@@ -75,7 +75,7 @@ void Rfid::handle() {
   
   // tag found
   if (rfid_tag_present && !rfid_tag_present_prev){
-    _logic.serial.print("tag found.\n");
+    // _logic.serial.print("tag found.\n");
     for ( uint8_t i = 0; i < 4; i++) {
        readCard[i] = mfrc522.uid.uidByte[i];
     }
@@ -84,7 +84,7 @@ void Rfid::handle() {
 
   // tag removed
   if (!rfid_tag_present && rfid_tag_present_prev){
-    _logic.serial.print("tag removed.\n");
+    // _logic.serial.print("tag removed.\n");
     idol = 0;
   }
 }
