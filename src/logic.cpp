@@ -12,7 +12,8 @@ Logic::Logic()
   : serial(),
     rfid(*this),
     lights(*this),
-    magnet(*this)
+    magnet(*this),
+    wifi(*this)
 {
 }
 
@@ -22,6 +23,7 @@ void Logic::setup() {
   rfid.setup();
   lights.setup();
   magnet.setup();
+  wifi.setup();
 }
 
 void Logic::handle() {
@@ -29,6 +31,7 @@ void Logic::handle() {
   magnet.handle();
   lights.handle();
   rfid.handle();
+  wifi.handle();
 
   if (rfid.idol != _idol) {
     _idol = rfid.idol;
