@@ -14,11 +14,11 @@ MFRC522 mfrc522(SS_PIN, RST_PIN);  // Create MFRC522 instance.
 
 #define NUM_IDOLS 5
 byte idols[][4] = {
-  { 0xA7, 0x86, 0x8A, 0xF2 },
-  { 0xF7, 0x81, 0x8A, 0xF2 }, 
-  { 0x07, 0x83, 0x8A, 0xF2 },
-  { 0xF7, 0x6F, 0x8C, 0xF2 },
-  { 0x97, 0x6F, 0x8C, 0xF2 },
+  { 0xA7, 0x86, 0x8A, 0xF2 }, // idol 1 (*)
+  { 0xF7, 0x81, 0x8A, 0xF2 }, // idol 2 (*)
+  { 0x07, 0x83, 0x8A, 0xF2 }, // idol 3 (*)
+  { 0xF7, 0x6F, 0x8C, 0xF2 }, // idol 4 (*)
+  { 0x97, 0x6F, 0x8C, 0xF2 }, // idol 5 (*) ## KEY TO CABINET ##
 };
 
 byte readCard[4];    // Stores scanned ID read from RFID Module
@@ -64,15 +64,11 @@ void Rfid::handle() {
   MFRC522::StatusCode result = mfrc522.PICC_RequestA(bufferATQA, &bufferSize);
 
   if(result == mfrc522.STATUS_OK){
-    if ( ! mfrc522.PICC_ReadCardSerial()) { //Since a PICC placed get Serial and continue   
+    if ( ! mfrc522.PICC_ReadCardSerial()) { //Since a PICC placed get Serial and continue
       return;
     }
     _rfid_error_counter = 0;
     _tag_found = true;
-
-    for ( uint8_t i = 0; i < 4; i++) {
-       readCard[i] = mfrc522.uid.uidByte[i];
-    }
   }
 
   rfid_tag_present = _tag_found;
@@ -80,6 +76,9 @@ void Rfid::handle() {
   // tag found
   if (rfid_tag_present && !rfid_tag_present_prev){
     _logic.serial.print("tag found.\n");
+    for ( uint8_t i = 0; i < 4; i++) {
+       readCard[i] = mfrc522.uid.uidByte[i];
+    }
     idol = compareTags();
   }
 
@@ -92,10 +91,15 @@ void Rfid::handle() {
 
 int compareTags() {
   for ( uint8_t j = 0; j < NUM_IDOLS; j++) {
+    bool matched = true;
     for ( uint8_t k = 0; k < 4; k++ ) {
       if ( readCard[k] != idols[j][k] ) {
-        return j + 1;
+        matched = false;
       }
+    }
+
+    if (matched) {
+      return j + 1;
     }
   }
 

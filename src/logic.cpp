@@ -74,7 +74,7 @@ void Logic::status() {
       solved_at > 0 ? "true" : "false",
       lights.idol > 0 ? "true" : "false",
       magnet.enabled ? "true" : "false",
-      rfid.idol,
+      _idol,
       CRLF);
 
   serial.print(cMsg);
