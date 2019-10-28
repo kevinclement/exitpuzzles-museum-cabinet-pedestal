@@ -12,18 +12,16 @@ Logic::Logic()
   : serial(),
     rfid(*this),
     lights(*this),
-    magnet(*this),
-    wifi(*this)
+    magnet(*this)
 {
 }
 
 void Logic::setup() {
-  serial.setup("ExitMuseumCabinet");
+  serial.setup("");
 
   rfid.setup();
   lights.setup();
   magnet.setup();
-  wifi.setup();
 }
 
 void Logic::handle() {
@@ -31,7 +29,6 @@ void Logic::handle() {
   magnet.handle();
   lights.handle();
   rfid.handle();
-  wifi.handle();
 
   if (rfid.idol != _idol) {
     _idol = rfid.idol;
