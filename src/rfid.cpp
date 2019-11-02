@@ -36,7 +36,7 @@ byte tags [5][2][4] = {
   },
   {
     // idol 5 (green) ## KEY TO CABINET ##
-    { 0x97, 0x6F, 0x8C, 0xF2 },
+    { 0x27, 0x8F, 0x8E, 0xF2 },
     { 0xF7, 0x92, 0x8E, 0xF2 }
   }
 };
@@ -123,6 +123,11 @@ int compareTags() {
         idol = idolIndex + 1;
       }
     }
+  }
+
+  // unknown tag, write to serial to help add it to system
+  if (idol == 0) {
+    Serial.printf("WARN: Unknown tag: { 0x%02X, 0x%02X, 0x%02X, 0x%02X }\n", readCard[0], readCard[1], readCard[2], readCard[3]);
   }
 
   return idol;
