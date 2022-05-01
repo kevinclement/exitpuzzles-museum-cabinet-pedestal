@@ -89,6 +89,9 @@ void Rfid::handle() {
     }
     _rfid_error_counter = 0;
     _tag_found = true;
+  } else if(result != mfrc522.STATUS_TIMEOUT){
+    _logic.serial.print("** BAD RFID result: ");
+    Serial.println(mfrc522.GetStatusCodeName(result));
   }
 
   rfid_tag_present = _tag_found;
