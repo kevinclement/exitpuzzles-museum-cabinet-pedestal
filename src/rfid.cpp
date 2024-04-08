@@ -7,6 +7,13 @@
 #define SS_PIN 5
 #define RST_PIN 22
 
+// Backup STICKERS
+//   B1: 04 06 22 0A 5F 70 81
+//   B2: 04 3D 21 0A 5F 70 81
+//   B3: 04 77 1F 0A 5F 70 80
+//   B4: 04 E9 21 0A 5F 70 80
+//   B5: 04 B8 20 0A 5F 70 80
+
 // functions
 int compareTags();
 
