@@ -13,3 +13,4 @@
 ## 2nd update idol scanners ##
 1. goto tomb server, and upate the matching rfid scanner for that idol
 2. again, should just be 4 hex codes
+  Example: [96fee7a5155e479bb74ca48b991dd1e7a02c0f45](https://github.com/kevinclement/exitpuzzles-museum-mausoleum-rfid-3-nano/commit/96fee7a5155e479bb74ca48b991dd1e7a02c0f45)
